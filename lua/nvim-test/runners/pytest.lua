@@ -1,7 +1,7 @@
 local Runner = require "nvim-test.runner"
 
 local pytest = Runner:init({
-  command = { "docker-compose exec web python manage.py test --parallel" },
+  command = { "docker-compose exec web python manage.py test" },
   file_pattern = "\\v(test_[^.]+|[^.]+_test|tests)\\.py$",
   find_files = { "test_{name}.py", "{name}_test.py", "tests.py" },
 }, {
