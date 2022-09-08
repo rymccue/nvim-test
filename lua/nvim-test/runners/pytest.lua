@@ -1,7 +1,7 @@
 local Runner = require "nvim-test.runner"
 
 local pytest = Runner:init({
-  command = { (vim.env.VIRTUAL_ENV or "venv") .. "/bin/pytest", "pytest" },
+  command = { "docker-compose exec web bash manage.py test" },
   file_pattern = "\\v(test_[^.]+|[^.]+_test|tests)\\.py$",
   find_files = { "test_{name}.py", "{name}_test.py", "tests.py" },
 }, {
