@@ -24,8 +24,14 @@ local pytest = Runner:init({
     ]],
 })
 
-function pytest:build_test_args(args, tests)
-  args[#args] = args[#args] .. "::" .. table.concat(tests, "::")
+function pytest:build_args(args, filename, opts)
+  if filename then
+    local path, _ = vim.fn.fnamemodify(filename, ":.:r"):gsub("/", ".")
+    table.insert(args, path)
+  end
+  if opts.tests and #opts.tests > 0 then
+    args[#args] = args[#args] .. "." .. table.concat(opts.tests, ".")
+  end
 end
 
 return pytest
